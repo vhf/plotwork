@@ -124,7 +124,8 @@ Take a look at the code and comments in the [minimal](https://draft.li/plotwork/
 
 * Presets: a way of exporting the `tweak` object and to quickly recall it. It would be something like "saving" the result of having tweaked things.
 * Full export: I'm thinking about writing the full source of the `.js` file together with the tweaked chosen values right into the exported SVG file, in a big `<!--XML comment-->`. It might be interesting for archival/reproducibility.
-* Try to add examples using [Paper.js](http://paperjs.org/) and other libs.
+* Try to add examples using [~~Paper.js~~](http://paperjs.org/) and other libs.
+  * For Paper.js, see [`paper.js`](/plots/paper.js)
 * Go back to actually create some generative/procedural art instead of building this, that's been enough of yak shaving for now.
 
 ## How to use this

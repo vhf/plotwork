@@ -8,6 +8,7 @@ yarn-error.log*
 plots/*.js
 !plots/demo.js
 !plots/minimal.js
+!plots/paper.js
 _plots/
 # Editor directories and files
 .idea
