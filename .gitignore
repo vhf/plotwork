@@ -9,6 +9,7 @@ plots/*.js
 !plots/demo.js
 !plots/minimal.js
 !plots/paper.js
+!plots/paper2.js
 _plots/
 # Editor directories and files
 .idea
