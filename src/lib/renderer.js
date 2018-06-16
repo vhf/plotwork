@@ -74,7 +74,7 @@ class Renderer {
   animationToggle () {
     this.drawArgs.disableAnimation = !this.drawArgs.disableAnimation
     this.clear()
-    this.render()
+    this.rendered = this.render()
   }
 
   render () {
@@ -121,27 +121,35 @@ class Renderer {
     if (!is.function(render)) {
       alert("Your plot's exported 'generate' function needs to return an object with a render method.")
     }
-    render(this.drawArgs)
+    this.rendered = render(this.drawArgs)
     this.context.restore()
   }
 
   svg (filename) {
+    const context = this.context
     const animated = this.animate
     this.animate = false
-    const context = this.context
-    this.context = new C2S(this.canvas.width, this.canvas.height)
-    this.clear()
-    this.draw()
-    const svg = this.context.getSerializedSvg(true)
+    let svg = ''
+    if (this.rendered) {
+      this.download(filename, this.rendered())
+    } else {
+      this.context = new C2S(this.canvas.width, this.canvas.height)
+      this.clear()
+      this.draw()
+      svg = this.context.getSerializedSvg(true)
+      this.download(filename, svg)
+    }
+    this.animate = animated
+    this.context = context
+  }
+
+  download (filename, svg) {
     const a = window.document.createElement('a')
     a.href = window.URL.createObjectURL(new Blob([svg], {type: 'image/svg+xml'}))
     a.download = `${this.name}-${this.tweak.seed}.svg`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
-
-    this.animate = animated
-    this.context = context
   }
 }
 

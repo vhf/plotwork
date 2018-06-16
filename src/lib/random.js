@@ -14,10 +14,6 @@ class Rnd {
     this.simplex = new SimplexNoise(this.random)
   }
 
-  random () {
-    return this.random()
-  }
-
   noise2D (x, y) {
     return this.simplex.noise2D(x, y)
   }
@@ -28,27 +24,6 @@ class Rnd {
 
   noise4D (x, y, z, w) {
     return this.simplex.noise4D(x, y, z, w)
-  }
-
-  randomSign () {
-    return this.random() > 0.5 ? 1 : -1
-  }
-
-  randomBool () {
-    return this.random() > 0.5
-  }
-
-  randomFloat (min, max) {
-    if (max === undefined) {
-      max = min
-      min = 0
-    }
-
-    if (typeof min !== 'number' || typeof max !== 'number') {
-      throw new TypeError('Expected all arguments to be numbers')
-    }
-
-    return this.random() * (max - min) + min
   }
 
   shuffle (arr) {
@@ -69,8 +44,46 @@ class Rnd {
     return ret
   }
 
+  random () {
+    return this.random()
+  }
+
+  randomAngle (limit) {
+    // non-linear distribution
+    const nonUniformNorm = Math.pow(Math.abs(limit), 3)
+    let val = 0
+    while ((val === 0) || (this.random() < (Math.pow(Math.abs(val), 3) / nonUniformNorm))) {
+      val = this.randomFloat(-limit, +limit)
+    }
+    return val
+  }
+
+  randomSign () {
+    return this.random() > 0.5 ? 1 : -1
+  }
+
+  randomBool () {
+    return this.random() > 0.5
+  }
+
+  randomFloat (min, max) {
+    if (typeof max === 'undefined') {
+      max = min
+      min = 0
+    }
+
+    if (typeof min !== 'number' || typeof max !== 'number') {
+      if (typeof max === 'undefined') {
+        throw new TypeError('Expected min to be a number')
+      }
+      throw new TypeError('Expected all arguments to be numbers')
+    }
+
+    return this.random() * (max - min) + min
+  }
+
   randomInt (min, max) {
-    if (max === undefined) {
+    if (typeof max === 'undefined') {
       max = min
       min = 0
     }

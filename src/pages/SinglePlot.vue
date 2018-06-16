@@ -96,7 +96,7 @@
             </button>
           </div>
           <div v-else-if="isNumber(name)">
-            <p>
+            <p class="input">
               {{ getLabel(name) }}
 
               <VueSlider

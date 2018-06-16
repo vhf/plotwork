@@ -8,7 +8,7 @@ export function generate (context, tweak) {
     // Example taken from http://paperjs.org/tutorials/getting-started/using-javascript-directly/
     paper.setup(context.canvas)
     // Create a Paper.js Path to draw a line into it:
-    var path = new paper.Path()
+    var path = new paper.Path.Line()
     // Give the stroke a color
     path.strokeColor = 'black'
     var start = new paper.Point(0, 0)
@@ -17,7 +17,11 @@ export function generate (context, tweak) {
     // Note that the plus operator on Point objects does not work
     // in JavaScript. Instead, we need to call the add() function:
     path.lineTo(start.add([ 5, 5 ]))
+
     // Draw the view now:
     paper.view.draw()
+    return function exportSVG () {
+      return paper.project.exportSVG({asString: true})
+    }
   }
 }
