@@ -7,10 +7,14 @@ yarn-error.log*
 /test/unit/coverage/
 plots/*.js
 !plots/demo.js
+!plots/distributions.js
 !plots/minimal.js
 !plots/paper.js
 !plots/paper2.js
-_plots/
+_plots/*
+_plots/.*
+!_plots/.gitkeep
+
 # Editor directories and files
 .idea
 .vscode
