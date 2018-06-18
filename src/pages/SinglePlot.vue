@@ -5,7 +5,9 @@
       @click="controls = !controls">
       &#xF00D;
     </button>
-    <div class="row">
+    <div
+      :class="{open: controls}"
+      class="row">
       <div
         :class="{
           'col-sm-9': controls,
@@ -54,22 +56,24 @@
           :key="name">
           <div v-if="isRange(name)">
             <p
-              v-if="tweakMetadata[name] && tweakMetadata[name].range">
-              {{ getLabel(name) }}
+              v-if="tweakMetadata[name] && tweakMetadata[name].range"
+              class="input">
+              <label>{{ getLabel(name) }}</label>
               <VueSlider
                 v-model="tweak[name]"
                 :min="tweakMetadata[name].range[0]"
                 :max="tweakMetadata[name].range[1]"
-                tooltip-dir="bottom"/>
+                tooltip-dir="top"/>
             </p>
             <p
-              v-else>
-              {{ getLabel(name) }}
+              v-else
+              class="input">
+              <label>{{ getLabel(name) }}</label>
               <VueSlider
                 v-model="tweak[name]"
                 :min="0"
                 :max="Math.max(100, tweak[name])"
-                tooltip-dir="bottom"/>
+                tooltip-dir="top"/>
             </p>
           </div>
           <div v-else-if="isBoolean(name)">
@@ -78,10 +82,8 @@
               :label="getLabel(name)"/>
           </div>
           <div v-else-if="isString(name)">
-            <label>
-              {{ getLabel(name) }}
-            </label>
             <p class="input">
+              <label>{{ getLabel(name) }}</label>
               <input
                 v-model="tweak[name]"
                 type="text">
@@ -97,14 +99,13 @@
           </div>
           <div v-else-if="isNumber(name)">
             <p class="input">
-              {{ getLabel(name) }}
-
+              <label>{{ getLabel(name) }}</label>
               <VueSlider
                 v-if="tweakMetadata && tweakMetadata[name] && tweakMetadata[name].max"
                 v-model="tweak[name]"
                 :min="tweakMetadata[name].min"
                 :max="tweakMetadata[name].max"
-                tooltip-dir="bottom"/>
+                tooltip-dir="top"/>
               <input
                 v-else
                 v-model="tweak[name]"
@@ -280,6 +281,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.open.row  {
+  margin-right: 0;
+}
 .canvas-container {
   text-align: center;
   height: 100%;
@@ -287,19 +291,13 @@ export default {
   margin: 2em auto 0 auto;
   overflow: hidden;
 }
-// .canvas-controls-open {
-//   text-align: right;
-//   padding-right: 0;
-// }
 
 .controls-container {
   background-color: rgba(52, 73, 94, 1);
   padding: 2em 40px 20px 20px;
   min-height: 100vh;
-}
-
-.controls-container p {
-  margin-bottom: 40px;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 .controls-opener {
@@ -308,4 +306,9 @@ export default {
   right: 20px;
   font-family: FontAwesome;
 }
+</style>
+<style lang="scss">
+  .vue-slider-component.vue-slider-horizontal {
+    margin-top: 38px;
+  }
 </style>

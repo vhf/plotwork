@@ -31,10 +31,10 @@ class Rnd {
       throw new TypeError('Expected Array, got ' + typeof arr)
     }
 
-    var rand
-    var tmp
-    var len = arr.length
-    var ret = arr.slice()
+    let rand
+    let tmp
+    let len = arr.length
+    const ret = arr.slice()
     while (len) {
       rand = Math.floor(this.random() * len--)
       tmp = ret[len]
@@ -97,7 +97,7 @@ class Rnd {
 
   // uniform distribution in a 2D circle
   randomCircle (out, scale = 1) {
-    var r = this.random() * 2.0 * Math.PI
+    const r = this.random() * 2.0 * Math.PI
     out[0] = Math.cos(r) * scale
     out[1] = Math.sin(r) * scale
     return out
@@ -105,9 +105,9 @@ class Rnd {
 
   // uniform distribution in a 3D sphere
   randomSphere (out, scale = 1) {
-    var r = this.random() * 2.0 * Math.PI
-    var z = (this.random() * 2.0) - 1.0
-    var zScale = Math.sqrt(1.0 - z * z) * scale
+    const r = this.random() * 2.0 * Math.PI
+    const z = (this.random() * 2.0) - 1.0
+    const zScale = Math.sqrt(1.0 - z * z) * scale
     out[0] = Math.cos(r) * zScale
     out[1] = Math.sin(r) * zScale
     out[2] = z * scale

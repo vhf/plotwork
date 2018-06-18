@@ -16,8 +16,8 @@ Vue.use(VueResource)
 Vue.config.productionTip = false
 
 const context = [
-  require.context('../_plots/', true, /\.js$/),
-  require.context('../plots/', true, /\.js$/)
+  require.context('../_plots/', false, /\.js$/),
+  require.context('../plots/', false, /\.js$/)
 ]
 export const plots = context
   .map(ctx =>
