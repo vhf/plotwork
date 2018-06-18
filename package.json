@@ -1,6 +1,6 @@
 {
   "name": "plotwork",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Canvas interactive drawing framework - An experiment to enable more experiments",
   "author": "Victor Felder <victor@draft.li>",
   "license": "AGPL-3.0",
