@@ -1,9 +1,11 @@
+import Rnd from '@/lib/random'
 import p from 'paper'
 
 export const tweak = {
   seed: '',
   Bx: 55,
-  By: 40
+  By: 40,
+  random: false
 }
 export const tweakMetadata = {
   Bx: {
@@ -18,11 +20,16 @@ export const tweakMetadata = {
 export const dimensions = [100, 100]
 
 export function generate (context, tweak) {
-  return function render ({disableAnimation, step}) {
+  const r = new Rnd(tweak.seed)
+  const Px = r.randomInt(100)
+  const Py = r.randomInt(100)
+  const PPos = tweak.random ? [Px, Py] : [10, 70]
+
+  return function render () {
     p.setup(context.canvas)
     const A = new p.Point(30, 30)
     const B = new p.Point(tweak.Bx, tweak.By)
-    const P = new p.Point(10, 70)
+    const P = new p.Point(PPos)
     const circle = new p.Path.Circle(P, 1)
     circle.strokeColor = 'black'
     const AB = new p.Path.Line(A, B)
