@@ -163,7 +163,8 @@ export default {
       seed: null,
       tweak: {},
       tweakMetadata: {},
-      controls: true
+      controls: true,
+      inited: false
     }
   },
   watch: {
@@ -173,7 +174,7 @@ export default {
     tweak: {
       handler () {
         Object.assign(this.plot.tweak, this.tweak)
-        this.restart()
+        if (this.inited) this.restart()
       },
       deep: true
     }
@@ -199,6 +200,7 @@ export default {
       this.tweak.seed = this.tweak.seed || (Math.floor(Date.now() * Math.random())).toString(16)
       this.$nextTick(() => {
         this.resize(true)
+        this.inited = true
         window.addEventListener('resize', this.resize)
       })
     },
