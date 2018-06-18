@@ -16,11 +16,11 @@ This project is an interactive web interface to plot canvas drawings and control
 * Creating a new plot is as simple as dropping a JS file into a specific directory; plotwork automatically detects it and reloads.
 * Displaying a single plot automatically renders a "control panel" allowing the user to change parameters and see the resulting plot in real-time.
 
-## Creating a plot
+## Creating A Plot
 
 Check out the source of the [demo](https://draft.li/plotwork/#/plots/demo.js) plot [`demo.js`](/plots/demo.js), or the [minimal](https://draft.li/plotwork/#/plots/minimal.js) plot [`minimal.js`](/plots/minimal.js).
 
-### Mandatory elements any plot should export
+### Mandatory Elements Any Plot Should Export
 
 Taking a look at the [minimal example, `minimal.js`](/plots/minimal.js) might help. It only exports what needs to be exported, nothing else.
 
@@ -128,25 +128,39 @@ Take a look at the code and comments in the [minimal](https://draft.li/plotwork/
   * For Paper.js, see [`paper.js`](/plots/paper.js)
 * Go back to actually create some generative/procedural art instead of building this, that's been enough of yak shaving for now.
 
-## How to use this
+## Getting Started
 
-Clone this repo.
-
-## Running the project
+### Install Dependencies
 
 ``` bash
 # install dependencies
 yarn
+# or
+npm install
+```
 
-# serve with hot reload at localhost:8080
+### Running The Local Server With Hot Reload
+
+```
 npm run dev
 ```
+
+### Creating Your First Plot
+
+Copy the minimal example and start modifying it.
+
+```
+cp plots/minimal.js _plots/something.js
+```
+
+The server will automatically pick it up and update the page in your browser, you should now
+see `something.js` on <http://localhost:8080>.
 
 ## Inspiration / Thanks
 
 * My main inspiration for this software is [penplot](https://github.com/mattdesl/penplot) by [@mattdesl](https://github.com/mattdesl) ([website](https://www.mattdesl.com/)). I wanted a tweakable version of his amazingly fun tool.
 * I discovered [apparatus.generated.space](http://apparatus.generated.space/) by [@kgolid](https://github.com/kgolid) a few days before releasing this project. If only I knew about [dat.gui](https://github.com/dataarts/dat.gui) before creating this…
-* Shout out to [@inconvergent](https://github.com/inconvergent/), whose [work](https://inconvergent.net/) keeps my inspired.
+* Shout out to [@inconvergent](https://github.com/inconvergent/), whose [work](https://inconvergent.net/) keeps me inspired.
 
 ## License
 
