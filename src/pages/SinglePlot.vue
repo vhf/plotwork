@@ -231,8 +231,8 @@ export default {
       const windowWidth = window.innerWidth
       const windowAspect = windowWidth / windowHeight
       const displayPadding = 40
-      const aspect = 1
-      let width, height
+      let [width, height] = this.plot.dimensions
+      let aspect = width / height
       if (windowAspect > aspect) {
         height = windowHeight - displayPadding * 2
         width = height * aspect
